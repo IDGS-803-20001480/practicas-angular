@@ -1,0 +1,40 @@
+<div class="row">
+    <h1 class="text-center">Cinepolis</h1>
+    <div class="col-md-6">
+        <div class="mb-3">
+            <mat-form-field>
+                <input matInput [(ngModel)]="nombre" name="nombre" placeholder="nombre" class="form-control">
+            </mat-form-field>
+        </div>
+        <div class="mb-3">
+            <mat-form-field>
+                <input type="number" matInput [(ngModel)]="cantidadCom" name="cantidadCom" placeholder="cantidadCompradores" class="form-control">
+            </mat-form-field>
+        </div>
+        <div class="mb-3">
+            <div class="radio-group">
+                <label>Pago con tarjeta</label>
+                <mat-radio-group  name="opciones" [(ngModel)]="tarjetaSeleccion">
+                    <mat-radio-button *ngFor="let op of opcionTarjeta" name="opciones" 
+                    [value]="op" style="margin: 10px;">{{op}}
+                </mat-radio-button>
+            </mat-radio-group>
+             </div>
+        </div>
+        <div class="mb-3">
+            <mat-form-field>
+                <input type="number" matInput [(ngModel)]="cantidadBol" name="cantidadBol" placeholder="cantidad de Boletos" class="form-control">
+            </mat-form-field>
+    </div>
+    <div class="mb-3">
+        <button mat-raised-button color="primary" (click)="validarCompra()">Calcular</button>
+    </div>
+    </div>
+    <div class="col-md-6">
+        <div *ngIf="total > 0 ">
+        <h2>valor a pagar: {{total}}</h2>
+        <h2>cliente: {{nombre}}</h2>
+    </div>
+        <h2>{{respuesta}}</h2>
+    </div>
+</div>

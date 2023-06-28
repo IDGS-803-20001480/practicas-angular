@@ -1,0 +1,66 @@
+<div class="row">
+   <h1 class="text-center">Calculadora de Resistencia</h1>
+    <div class="col-md-6">
+        <div class="mb-3">
+            <div class="form-group">
+                <label for="color1">Band 1:</label>
+                <select id="color1" class="form-control" [(ngModel)]="banda1">
+                  <option *ngFor="let color of bandColor" [style.background]="color" [value]="color">{{ color }}</option>
+                </select>
+              </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-group">
+                <label for="color2">Band 2:</label>
+                <select id="color2" class="form-control" [(ngModel)]="banda2">
+                  <option *ngFor="let color of bandColor" [style.background]="color" [value]="color">{{ color }}</option>
+                </select>
+              </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-group">
+                <label for="color3">Multiplicador:</label>
+                <select id="color3" class="form-control" [(ngModel)]="banda3">
+                  <option *ngFor="let color of bandaMultiColor" [style.background]="color" [value]="color">{{ color }}</option>
+                </select>
+              </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-group">
+                <label for="color4">Tolerancia:</label>
+                <select id="color4" class="form-control" [(ngModel)]="banda4">
+                  <option *ngFor="let color of bandToleranciaColor" [style.background]="color" [value]="color">{{ color }}</option>
+                </select>
+              </div>
+        </div>
+        <div class="mb-3">
+            <button  class="btn btn-primary" (click)="validarResistencia()">Calcular</button>
+        </div>
+        
+        <table class="table table-bordered">
+            <tr>
+                <th>Col Banda1</th>
+                <th>Col Banda2</th>
+                <th>Multiplicador</th>
+                <th>Tolerancia</th>
+                  <th>Resultado</th>
+                  <th>Minimo</th>
+                  <th>Maximo</th>
+              </tr>
+                <tr>
+                    <td [ngStyle]="{'background-color': banda1}">{{banda1}}</td>
+                    <td [ngStyle]="{'background-color': banda2}">{{banda2}}</td>
+                    <td [ngStyle]="{'background-color': banda3}">{{banda3}}</td>
+                    <td [ngStyle]="{'background-color': banda4}">{{banda4}}</td>
+                    <td>{{resultado}} Ω</td>
+                    <td>{{minimo}}</td>
+                    <td>{{maximo}}</td>
+                </tr>
+        </table>
+        <h4>{{respuesta}}</h4>
+
+        </div>
+        <div class="col-md-6">
+            <img src="https://www.electrontools.com/Home/WP/wp-content/uploads/2019/04/esistencia-de-4-bandas.jpg" alt="">
+        </div>
+        </div>
