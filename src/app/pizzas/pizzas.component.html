@@ -1,0 +1,183 @@
+<!-- <p>pizzas works!</p>
+
+<div class="row">
+<div class="col-md-4">
+    <div class="mb-3">
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input type="text" matInput [(ngModel)]="nombre" name="nombre" placeholder="nombre" >
+        </mat-form-field>
+    </div>
+    <div class="mb-3">
+        <h3>Tamanio</h3>
+        <mat-radio-group  name="opciones" [(ngModel)]="tamanioSeleccion">
+            <mat-radio-button *ngFor="let op of opcionTamanio" name="opciones" 
+            [value]="op" style="display: flex;
+            flex-direction: column;
+            ">{{op}}
+        </mat-radio-button>
+    </mat-radio-group>
+    </div> 
+</div>
+<div class="col-md-4">
+    <div class="mb-3">
+        <mat-form-field>
+            <mat-label>Dirreccion</mat-label>
+            <input type="text" mat-input [(ngModel)]="dirreccion" name="dirreccion" placeholder="dirreccion" >
+        </mat-form-field>
+    </div>
+    <div class="mb-3">
+        <h3>Ingredientes</h3>
+        <div style="display: flex;
+        flex-direction: column;">
+        <mat-checkbox [(ngModel)]="jamon" name="jamon">Jamon</mat-checkbox>
+        <mat-checkbox [(ngModel)]="pinia" name="pinia" >Piña</mat-checkbox>
+        <mat-checkbox [(ngModel)]="champiniones" name="champiniones">Champiñones</mat-checkbox>
+    </div> 
+    </div> 
+</div> 
+<div class="col-md-4">
+    <div class="mb-3">
+        <mat-form-field>
+            <mat-label>Telefono</mat-label>
+            <input type="number" mat-input [(ngModel)]="telefono" name="telefono" placeholder="telefono" >
+        </mat-form-field>
+    </div>
+    <div class="mb-3">
+        <mat-form-field>
+            <mat-label>Numero de pizzas</mat-label>
+            <input type="number" mat-input [(ngModel)]="Npizzas" name="Npizzas" placeholder="Npizzas" >
+        </mat-form-field>
+    </div>
+    <div class="mb-3">
+        <button mat-raised-button color="primary" (click)="validarCompra()">Calcular</button>
+    </div>
+</div>
+
+
+
+
+</div>
+
+
+ -->
+
+<div class="row mt-5">
+  <div class="col-md-4">
+    <div class="mb-3">
+      <label for="nombre">Nombre</label>
+      <input type="text" class="form-control" [(ngModel)]="nombre" name="nombre" placeholder="nombre">
+    </div>
+    <div class="mb-3">
+      <h3>Tamaño</h3>
+      <div class="form-check" *ngFor="let op of opcionTamanio">
+        <input class="form-check-input" type="radio" name="opciones" [(ngModel)]="tamanioSeleccion" [value]="op">
+        <label class="form-check-label">{{op}}</label>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="mb-3">
+      <label for="direccion">Dirección</label>
+      <input type="text" class="form-control" [(ngModel)]="direccion" name="direccion" placeholder="dirección">
+    </div>
+    <div class="mb-3">
+      <h3>Ingredientes</h3>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="jamon" name="jamon" id="jamon">
+        <label class="form-check-label" for="jamon">Jamón $10</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="pinia" name="pinia" id="pinia">
+        <label class="form-check-label" for="pinia">Piña $10</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="champiniones" name="champiniones"
+          id="champiniones">
+        <label class="form-check-label" for="champiniones">Champiñones $10</label>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="mb-3">
+      <label for="telefono">Teléfono</label>
+      <input type="number" class="form-control" [(ngModel)]="telefono" name="telefono" placeholder="teléfono">
+    </div>
+    <div class="mb-3">
+      <label for="Npizzas">Número de pizzas</label>
+      <input type="number" class="form-control" [(ngModel)]="Npizzas" name="Npizzas" placeholder="Número de pizzas">
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-primary" (click)="validarCompra()">Calcular</button>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-6">
+    <div class="container">
+      <div class="col-md-12">
+        <h3>Resumen de Pedido:</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>tamaño</th>
+              <th>Ingredinetes</th>
+              <th>Num Pizzas</th>
+              <th>Subtotal</th>
+              <th>Accion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of detalleP">
+              <td>{{item.tamanio}}</td>
+              <td>{{item.Ingredientes}}</td>
+              <td>{{item.Npizzas}}</td>
+              <td>{{item.subtotal}}</td>
+              <td><button class="btn btn-danger" (click)="eliminarDetalleCompra(item)">Eliminar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <!--<button class="btn btn-primary" (click)="AgregarVenta()">Terminar</button>-->
+      <div *ngIf="detalleP.length > 0">
+      <button class="btn btn-primary" onclick="window.modal.showModal();">Terminar</button>
+
+      <dialog id="modal">
+        <h2>Estas seguro de terminar tu pedido?</h2>
+        <p>El total a pagar es de: {{total}}</p>
+        <button class="btn btn-danger" onclick="window.modal.close();">Cerrar</button>
+        <button style="margin-left: 5px;" class="btn btn-success" (click)="AgregarVenta()"
+          onclick="window.modal.close();">Aceptar</button>
+      </dialog>
+    </div>
+
+
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="container" *ngIf="Ventas.length > 0">
+      <h3>Resumen de ventas</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>nombre</th>
+            <th>direccion</th>
+            <th>telefono</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ventaDetalle of Ventas">
+            <td>{{ventaDetalle.nombre}}</td>
+            <td>{{ventaDetalle.direccion}}</td>
+            <td>{{ventaDetalle.telefono}}</td>
+            <td>{{ventaDetalle.total}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

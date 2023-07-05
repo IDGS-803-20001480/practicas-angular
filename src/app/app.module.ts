@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CinepolisModule } from './cinepolis/cinepolis.module';
 import { ResistenciasModule } from './resistencias/resistencias.module';
 import { DistanciaPuntosModule } from './distancia-puntos/distancia-puntos.module';
+import { PizzasModule } from './pizzas/pizzas.module';
 import { MenuComponent } from './menu/menu.component';
 import { AppRoutingModule } from './app.routing.module';
 
@@ -23,6 +24,7 @@ import { AppRoutingModule } from './app.routing.module';
     CinepolisModule,
     ResistenciasModule,
     DistanciaPuntosModule,
+    PizzasModule,
     AppRoutingModule
   ],
   providers: [],
